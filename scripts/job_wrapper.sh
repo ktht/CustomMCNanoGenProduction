@@ -15,6 +15,11 @@ if [ ! -d $OUTPUT_DIR ]; then
   exit 1;
 fi
 
+TMP_ID=$SLURM_JOBID
+if [ -z "$TMP_ID" ]; then
+  TMP_ID=tmp;
+fi
+
 TMP_DIR=/scratch/$USER/$TMP_ID
 mkdir -p $TMP_DIR
 cd $TMP_DIR
@@ -24,4 +29,5 @@ run_job.sh $SEED $NEVENTS $OUTPUT $GRIDPACK
 cp -v $OUTPUT $OUTPUT_DIR
 
 sleep 60
-rm -f $OUTPUT
+cd -
+rm -f $TMP_DIR

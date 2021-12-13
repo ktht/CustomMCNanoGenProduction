@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# example:
+# example (100k W+jets events):
+# submit_jobs.sh wjets 100000 /hdfs/local/$USER/NanoGEN ~/log
 
 SAMPLE=$1;
 NEVENTS=$2;

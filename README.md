@@ -47,4 +47,7 @@ git clone https://github.com/ktht/CustomMCNanoGenProduction.git Configuration/Cu
 scram b -j8
 ```
 
-Run the jobs (TBD)
+Run the jobs (eg: 100k W+jets events):
+```bash
+submit_jobs.sh wjets 100000 /hdfs/local/$USER/NanoGEN ~/log
+``````
