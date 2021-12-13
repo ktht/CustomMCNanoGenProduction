@@ -14,11 +14,13 @@ CUSTOM_CMDS="process.RandomNumberGeneratorService.externalLHEProducer.initialSee
 CUSTOM_CMDS+="process.RandomNumberGeneratorService.generator.initialSeed=$SEED;";
 CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
 
-cmsDriver.py Configuration/CustomNanoGEN/python/fragment.py         \
-  --fileout file:$OUTPUT --mc --eventcontent RAWSIM,LHE             \
-  --datatier GEN,LHE --conditions auto:mc --step LHE,GEN            \
-  --no_exec --python_filename=run.py --number=$NEVENTS --nThreads=1 \
-  --customise_commands "$CUSTOM_CMDS";
+CFG=run.py
 
-cmsRun run.cfg
-rm -fv run.py
+cmsDriver.py Configuration/CustomNanoGEN/python/fragment.py       \
+  --fileout file:$OUTPUT --mc --eventcontent NANOAODGEN           \
+  --datatier NANOAOD --conditions auto:mc --step LHE,GEN,NANOGEN  \
+  --no_exec --python_filename=$CFG --number=$NEVENTS --nThreads=1 \
+  --era Run2_2018 --customise_commands "$CUSTOM_CMDS";
+
+cmsRun $CFG
+rm -fv $CFG
