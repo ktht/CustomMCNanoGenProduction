@@ -11,8 +11,8 @@ if [[ -z "$SEED" ]] || [[ -z "$NEVENTS" ]] || [[ -z "$OUTPUT" ]] || [[ -z "$GRID
 fi
 
 CUSTOM_CMDS="process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=$SEED;";
-CUSTOM_CMDS+="process.RandomNumberGeneratorService.generator.initialSeed=$SEED";
-CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK')";
+CUSTOM_CMDS+="process.RandomNumberGeneratorService.generator.initialSeed=$SEED;";
+CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
 
 cmsDriver.py Configuration/CustomNanoGEN/python/fragment.py         \
   --fileout file:$OUTPUT --mc --eventcontent RAWSIM,LHE             \
