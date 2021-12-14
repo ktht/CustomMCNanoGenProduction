@@ -24,7 +24,7 @@ if [ -z "$TMP_ID" ]; then
 fi
 
 TMP_DIR=/scratch/$USER/$TMP_ID
-mkdir -p $TMP_DIR
+mkdir -pv $TMP_DIR
 cd $TMP_DIR
 
 OUTPUT=tree_$SEED.root
@@ -33,4 +33,4 @@ cp -v $OUTPUT $OUTPUT_DIR
 
 sleep 60
 cd -
-rm -rf $TMP_DIR
+rm -rfv $TMP_DIR
