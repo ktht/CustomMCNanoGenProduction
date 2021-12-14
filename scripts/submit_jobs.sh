@@ -51,7 +51,7 @@ LOG_DIR=$LOG_BASEDIR/$SAMPLE;
 mkdir -pv $LOG_DIR;
 
 NEVENTS_PER_SAMPLE=5000;
-NOF_JOBS=python -c "import math; print(int(math.ceil($NEVENTS / $NEVENTS_PER_SAMPLE)))";
+NOF_JOBS=$(python -c "import math; print(int(math.ceil($NEVENTS / $NEVENTS_PER_SAMPLE)))");
 
 for i in `seq 1 $NOF_JOBS`; do
   sbatch --partition=main --output=$LOG_DIR/out_$i.log \
