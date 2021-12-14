@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Host is: `hostname`"
+echo "Date is: `date`"
+
 SEED=$1;
 NEVENTS=$2;
 OUTPUT_DIR=$3;

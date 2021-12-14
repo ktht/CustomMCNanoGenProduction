@@ -12,6 +12,9 @@ fi
 
 CUSTOM_CMDS="process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=$SEED;";
 CUSTOM_CMDS+="process.RandomNumberGeneratorService.generator.initialSeed=$SEED;";
+CUSTOM_CMDS+="process.source.firstRun=cms.untracked.uint32(1);";
+CUSTOM_CMDS+="process.source.firstLuminosityBlock=cms.untracked.uint32($SEED);";
+CUSTOM_CMDS+="process.source.numberEventsInLuminosityBlock=cms.untracked.uint32($NEVENTS);";
 CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
 
 CFG=run.py
@@ -22,5 +25,5 @@ cmsDriver.py Configuration/CustomNanoGEN/python/fragment.py       \
   --no_exec --python_filename=$CFG --number=$NEVENTS --nThreads=1 \
   --era Run2_2018 --customise_commands "$CUSTOM_CMDS";
 
-cmsRun $CFG
+/usr/bin/time --verbose cmsRun $CFG
 rm -fv $CFG
