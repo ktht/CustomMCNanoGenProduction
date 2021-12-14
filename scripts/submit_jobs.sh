@@ -3,6 +3,8 @@
 # example (100k W+jets events):
 # submit_jobs.sh wjets 100000 /hdfs/local/$USER/NanoGEN ~/log
 
+set -x
+
 SAMPLE=$1;
 NEVENTS=$2;
 OUTPUT_BASEDIR=$3;
@@ -51,7 +53,8 @@ LOG_DIR=$LOG_BASEDIR/$SAMPLE;
 mkdir -pv $LOG_DIR;
 
 NEVENTS_PER_SAMPLE=5000;
-NOF_JOBS=$(python -c "import math; print(int(math.ceil($NEVENTS / $NEVENTS_PER_SAMPLE)))");
+NOF_JOBS=$(python -c "import math; print(int(math.ceil(float($NEVENTS) / $NEVENTS_PER_SAMPLE)))");
+echo "Generating $NOF_JOBS job(s)";
 
 for i in `seq 1 $NOF_JOBS`; do
   sbatch --partition=main --output=$LOG_DIR/out_$i.log \
