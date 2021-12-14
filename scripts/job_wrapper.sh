@@ -30,4 +30,4 @@ cp -v $OUTPUT $OUTPUT_DIR
 
 sleep 60
 cd -
-rm -f $TMP_DIR
+rm -rf $TMP_DIR

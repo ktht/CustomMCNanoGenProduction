@@ -47,7 +47,20 @@ git clone https://github.com/ktht/CustomMCNanoGenProduction.git Configuration/Cu
 scram b -j8
 ```
 
-Run the jobs (eg: 100k W+jets events):
+Run the jobs (loss due to matching efficiency is not accounted for):
 ```bash
-submit_jobs.sh wjets 100000 /hdfs/local/$USER/NanoGEN ~/log
+submit_jobs.sh wjets 3000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w1jets 500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w2jets 300000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w3jets 200000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w4jets 100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+
+submit_jobs.sh wjets_ht70to100    1000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht100to200   1000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht200to400    500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht400to600    250000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht600to800    100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht800to1200   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht1200to2500  100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht2500toInf   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 ``````
