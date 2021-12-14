@@ -3,8 +3,6 @@
 # example (100k W+jets events):
 # submit_jobs.sh wjets 100000 /hdfs/local/$USER/NanoGEN ~/log
 
-set -x
-
 SAMPLE=$1;
 NEVENTS=$2;
 OUTPUT_BASEDIR=$3;
@@ -56,7 +54,22 @@ NEVENTS_PER_SAMPLE=5000;
 NOF_JOBS=$(python -c "import math; print(int(math.ceil(float($NEVENTS) / $NEVENTS_PER_SAMPLE)))");
 echo "Generating $NOF_JOBS job(s)";
 
+NOF_EVENTS_LAST=$NEVENTS_PER_SAMPLE;
+EXCESS=$(($NEVENTS - $NOF_JOBS * $NEVENTS_PER_SAMPLE));
+
+if [ $NEVENTS -lt $NEVENTS_PER_SAMPLE ]; then
+  NOF_EVENTS_LAST=$NEVENTS;
+elif [ $EXCESS -lt 0 ]; then
+  NOF_EVENTS_LAST=$(( $EXCESS + $NEVENTS_PER_SAMPLE ));
+fi
+
 for i in `seq 1 $NOF_JOBS`; do
+
+  NOF_EVENTS=$NEVENTS_PER_SAMPLE;
+  if [ "$i" == "$NOF_JOBS" ]; then
+    NOF_EVENTS=$NOF_EVENTS_LAST;
+  fi
+
   sbatch --partition=main --output=$LOG_DIR/out_$i.log \
-    job_wrapper.sh $i $NEVENTS_PER_SAMPLE $OUTPUT_DIR $GRIDPACK;
+    job_wrapper.sh $i $NOF_EVENTS $OUTPUT_DIR $GRIDPACK;
 done
