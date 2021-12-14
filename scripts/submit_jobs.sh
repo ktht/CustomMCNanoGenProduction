@@ -45,8 +45,12 @@ LOG_DIR=$LOG_BASEDIR/$SAMPLE;
 mkdir -pv $LOG_DIR;
 
 GRIDPACK=/hdfs/local/$USER/gridpacks/${SAMPLE_NAME}_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz
-NEVENTS_PER_SAMPLE=5000;
+if [ ! -f "$GRIDPACK" ]; then
+  echo "Gridpack missing: $GRIDPACK";
+  exit 1;
+fi
 
+NEVENTS_PER_SAMPLE=5000;
 NOF_JOBS=python -c "import math; print(int(math.ceil($NEVENTS / $NEVENTS_PER_SAMPLE)))";
 
 for i in `seq 1 $NOF_JOBS`; do
