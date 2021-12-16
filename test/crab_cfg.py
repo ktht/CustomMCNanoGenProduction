@@ -24,7 +24,7 @@ VERSION         = get_env_var('VERSION')
 GRIDPACK        = get_env_var('GRIDPACK')
 
 TODAY         = datetime.date.today().strftime("%Y%b%d")
-FILE_DIR      = os.path.realpath(__file__)
+FILE_DIR      = os.path.dirname(os.path.realpath(__file__))
 PSET_LOC      = os.path.join(FILE_DIR, 'run.py')
 SCRIPTEXE_LOC = os.path.join(FILE_DIR, 'run_crab.sh')
 CRAB_LOC      = os.path.join(os.path.expanduser('~'), 'crab_projects')
