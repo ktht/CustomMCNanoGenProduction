@@ -26,6 +26,13 @@ options.register(
   info    = "Seed",
 )
 options.register(
+  name    = 'nEvents',
+  default = 1,
+  mult    = VarParsing.multiplicity.singleton,
+  mytype  = VarParsing.varType.int,
+  info    = "Number of events",
+)
+options.register(
   name    = 'eventsPerLumi',
   default = 5000,
   mult    = VarParsing.multiplicity.singleton,
@@ -59,7 +66,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1)
+    input = cms.untracked.int32(options.nEvents) # custom
 )
 
 # Input source
@@ -67,7 +74,7 @@ process.source = cms.Source("EmptySource",
     # custom
     firstRun = cms.untracked.uint32(1),
     firstLuminosityBlock = cms.untracked.uint32(options.seed),
-    numberEventsInLuminosityBlock = cms.untracked.uint32(options.eventsPerLumi),
+    numberEventsInLuminosityBlock = cms.untracked.uint32(options.eventsPerLumi), # custom
 )
 
 process.options = cms.untracked.PSet(
@@ -76,7 +83,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/CustomNanoGEN/python/fragment.py nevts:200'),
+    annotation = cms.untracked.string('Configuration/CustomNanoGEN/python/fragment.py nevts:{}'.format(options.nEvents)), # custom
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -181,7 +188,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     args = cms.vstring(options.gridpack),
-    nEvents = cms.untracked.uint32(200),
+    nEvents = cms.untracked.uint32(options.nEvents), # custom
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('Configuration/CustomNanoGEN/data/run_generic_tarball_gfal.sh'), # custom
@@ -220,6 +227,8 @@ process = customizeNanoGEN(process)
 # custom
 process.RandomNumberGeneratorService.externalLHEProducer.initialSeed = options.seed
 process.RandomNumberGeneratorService.generator.initialSeed = options.seed
+process.nanogenSequence.remove(process.rivetProducerHTXS)
+process.nanogenSequence.remove(process.particleLevelTables)
 
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
