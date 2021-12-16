@@ -3,11 +3,6 @@
 # Example: 100 W+jets events, 20 events per job
 # submit_crab.sh -s wjets -n 100 -v test_v0 -j 20
 
-if [ -z "${RUCIO_ACCOUNT}" ]; then
-  echo "VOMS user name (\$RUCIO_ACCOUNT) not set up, exiting";
-  exit 1;
-fi
-
 echo "Checking if crab is available ..."
 CRAB_AVAILABLE=$(which crab 2>/dev/null)
 if [ -z "$CRAB_AVAILABLE" ]; then
@@ -50,9 +45,10 @@ SAMPLES["wjets_ht2500toInf"]="WJetsToLNu_HT-2500toInf";
 export NEVENTS_PER_JOB=5000;
 
 DRYRUN="";
-CRAB_CFG=$(dirname "${BASH_SOURCE[0]}")/crab_cfg.py
+CRAB_CFG=$(realpath $(dirname "${BASH_SOURCE[0]}"))/crab_cfg.py
 
-PREFIX=gsiftp://ganymede.hep.kbfi.ee:2811/cms/store/user/${RUCIO_ACCOUNT}/gridpacks;
+CRAB_USERNAME=$(crab checkusername | grep "^Username" | awk '{print $NF}')
+PREFIX=gsiftp://ganymede.hep.kbfi.ee:2811/cms/store/user/${CRAB_USERNAME}/gridpacks;
 
 show_help() {
   KEYS=$(echo $(for key in "${!SAMPLES[@]}"; do echo $key; done | sort | tr '\n' ',') | sed 's/,$//g' | sed 's/,/, /g');
@@ -113,4 +109,4 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 
-crab submit $DRYRUN --config="$CRAB_CFG" --wait
+crab submit $DRYRUN --config="$CRAB_CFG"

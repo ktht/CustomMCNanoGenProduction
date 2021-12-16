@@ -4,7 +4,7 @@ import os
 import datetime
 
 def test_positive_int(arg):
-  return type(arg) == int and int(arg) > 0
+  return arg.isdigit() and int(arg) > 0
 
 def get_env_var(env_var, fail_if_not_exists = True, test_type = None):
   if env_var not in os.environ:

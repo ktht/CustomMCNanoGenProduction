@@ -36,7 +36,7 @@ Produce the gridpacks:
 
 mkdir -p /hdfs/local/$USER/gridpacks
 cp *.tar.xz /hdfs/local/$USER/gridpacks/.
-ls /hdfs/local/$USER/gridpacks/*.tar.xz | xargs -I {} gfal-copy file://{} gsiftp://$SERVER:$PORT/cms/store/user/$RUCIO_ACCOUNT/gridpacks
+ls /hdfs/local/$USER/gridpacks/*.tar.xz | xargs -I {} gfal-copy file://{} gsiftp://$SERVER:$PORT/cms/store/user/$CRAB_USERNAME/gridpacks
 ```
 
 ## NanoGEN production
