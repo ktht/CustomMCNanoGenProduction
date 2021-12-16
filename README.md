@@ -62,12 +62,12 @@ submit_jobs.sh w3jets 10000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 8%
 submit_jobs.sh w4jets  6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 5.5%, 1.2k
 
 submit_jobs.sh wjets_ht70to100    6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 1.2k
-submit_jobs.sh wjets_ht100to200   7500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 1.5k
-submit_jobs.sh wjets_ht200to400   3000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 600
-submit_jobs.sh wjets_ht400to600    450000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 90
-submit_jobs.sh wjets_ht600to800    100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 20
-submit_jobs.sh wjets_ht800to1200   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 20
-submit_jobs.sh wjets_ht1200to2500  100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 20
+submit_jobs.sh wjets_ht100to200   7500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 12.5%, 1.5k
+submit_jobs.sh wjets_ht200to400   3000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 12.5%, 600
+submit_jobs.sh wjets_ht400to600    450000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 8%, 90
+submit_jobs.sh wjets_ht600to800    100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 9.5%, 20
+submit_jobs.sh wjets_ht800to1200   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 7%, 20
+submit_jobs.sh wjets_ht1200to2500  100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 6%, 20
 submit_jobs.sh wjets_ht2500toInf   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 20
 ``````
 
