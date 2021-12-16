@@ -5,6 +5,7 @@
 
 echo "Architecture: ${SCRAM_ARCH}"
 echo "CMSSW version: ${CMSSW_VERSION}"
+echo "gLite location: ${GLITE_LOCATION}"
 
 set -e
 
@@ -27,7 +28,7 @@ if [ -e $gridpack ]; then
 fi
 
 echo "%MSG-ExternalLHEProducer-subprocess INFO: Copying gridpack $xrd_path locally using xrootd"
-gfal-copy $xrd_path .
+LD_LIBRARY_PATH=${GLITE_LOCATION}/lib64:${GLITE_LOCATION}/lib gfal-copy $xrd_path .
 
 path=`pwd`/$gridpack
 generic_script=/cvmfs/cms.cern.ch/${SCRAM_ARCH}/cms/cmssw/${CMSSW_VERSION}/src/GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh
