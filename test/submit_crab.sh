@@ -52,7 +52,7 @@ export NEVENTS_PER_JOB=5000;
 DRYRUN="";
 CRAB_CFG=$(dirname "${BASH_SOURCE[0]}")/crab_cfg.py
 
-PREFIX=gsiftp://ganymede.hep.kbfi.ee:2811/cms/store/${RUCIO_ACCOUNT}/gridpacks;
+PREFIX=gsiftp://ganymede.hep.kbfi.ee:2811/cms/store/user/${RUCIO_ACCOUNT}/gridpacks;
 
 show_help() {
   KEYS=$(echo $(for key in "${!SAMPLES[@]}"; do echo $key; done | sort | tr '\n' ',') | sed 's/,$//g' | sed 's/,/, /g');

@@ -36,7 +36,7 @@ options.register(
   name    = 'gridpack',
   default = '',
   mult    = VarParsing.multiplicity.singleton,
-  mytype  = VarParsing.varType.int,
+  mytype  = VarParsing.varType.string,
   info    = "Gridpack",
 )
 options.parseArguments()
