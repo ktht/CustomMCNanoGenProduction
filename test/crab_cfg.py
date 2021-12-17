@@ -24,9 +24,10 @@ VERSION         = get_env_var('VERSION')
 GRIDPACK        = get_env_var('GRIDPACK')
 
 TODAY         = datetime.date.today().strftime("%Y%b%d")
-FILE_DIR      = os.path.dirname(os.path.realpath(__file__))
-PSET_LOC      = os.path.join(FILE_DIR, 'run.py')
-SCRIPTEXE_LOC = os.path.join(FILE_DIR, 'run_crab.sh')
+THIS_FILE     = os.path.realpath(__file__)
+THIS_DIR      = os.path.dirname(THIS_FILE)
+PSET_LOC      = os.path.join(THIS_DIR, 'run.py')
+SCRIPTEXE_LOC = os.path.join(THIS_DIR, 'run_crab.sh')
 CRAB_LOC      = os.path.join(os.path.expanduser('~'), 'crab_projects')
 
 if not os.path.isdir(CRAB_LOC):
@@ -34,7 +35,7 @@ if not os.path.isdir(CRAB_LOC):
 assert(os.path.isfile(PSET_LOC))
 assert(os.path.isfile(SCRIPTEXE_LOC))
 
-ID           = '{}_{}'.format(TODAY, DATASET)
+ID           = '{}_{}_{}'.format(TODAY, DATASET, VERSION)
 crabUserName = getUsernameFromCRIC()
 
 config = config()
@@ -47,9 +48,11 @@ config.General.transferLogs    = True
 config.JobType.pluginName              = 'PrivateMC'
 config.JobType.psetName                = PSET_LOC
 config.JobType.scriptExe               = SCRIPTEXE_LOC
-config.JobType.scriptArgs              = [ GRIDPACK, NEVENTS_PER_JOB ]
+config.JobType.scriptArgs              = [ 'gridpack={}'.format(GRIDPACK), 'eventsPerLumi={}'.format(NEVENTS_PER_JOB) ]
 config.JobType.allowUndistributedCMSSW = True
 config.JobType.numCores                = 1
+config.JobType.eventsPerLumi           = int(NEVENTS_PER_JOB)
+config.JobType.inputFiles              = [ SCRIPTEXE_LOC, PSET_LOC ]
 
 config.Site.storageSite          = 'T2_EE_Estonia'
 config.Data.outputPrimaryDataset = DATASET
