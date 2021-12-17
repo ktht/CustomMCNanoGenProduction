@@ -13,7 +13,7 @@ maxEvents_nr=$(echo $maxEvents | sed 's/maxEvents=//g');
 nEvents=$eventsPerLumi_nr;
 nEvents_expected=$(( $jobId * $eventsPerLumi_nr ));
 if [ $nEvents_expected -gt $maxEvents_nr ]; then
-  nEvents=$(( $maxEvents_nr - ( $jobId - 1 ) * $eventsPerLumi ))
+  nEvents=$(( $maxEvents_nr - ( $jobId - 1 ) * $eventsPerLumi_nr ))
 fi
 
 ls -lh
