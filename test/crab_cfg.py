@@ -48,7 +48,11 @@ config.General.transferLogs    = True
 config.JobType.pluginName              = 'PrivateMC'
 config.JobType.psetName                = PSET_LOC
 config.JobType.scriptExe               = SCRIPTEXE_LOC
-config.JobType.scriptArgs              = [ 'gridpack={}'.format(GRIDPACK), 'eventsPerLumi={}'.format(NEVENTS_PER_JOB) ]
+config.JobType.scriptArgs              = [
+  'gridpack={}'.format(GRIDPACK),
+  'eventsPerLumi={}'.format(NEVENTS_PER_JOB),
+  'maxEvents={}'.format(NEVENTS),
+]
 config.JobType.allowUndistributedCMSSW = True
 config.JobType.numCores                = 1
 config.JobType.eventsPerLumi           = int(NEVENTS_PER_JOB)
