@@ -1,9 +1,5 @@
 # Producing W+jets NanoGEN samples
 
-## TODO
-
-- Parse logs to compute the cross sections
-
 ## Gridpack generation
 
 NB! Do the following in clean environment, no CMSSW:
