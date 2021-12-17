@@ -75,5 +75,5 @@ for i in `seq 1 $NOF_JOBS`; do
   fi
 
   sbatch --partition=$SBATCH_QUEUE --output=$LOG_DIR/out_$i.log \
-    job_wrapper.sh $i $NOF_EVENTS $OUTPUT_DIR $GRIDPACK;
+    job_wrapper.sh $i $NOF_EVENTS $NEVENTS_PER_SAMPLE $OUTPUT_DIR $GRIDPACK;
 done

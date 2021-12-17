@@ -18,5 +18,15 @@ fi
 
 ls -lh
 
-# PSet.py should correspond to the tweaked PSet
-cmsRun -j FrameworkJobReport.xml run.py seed=$jobId $gridpack $eventsPerLumi nEvents=$nEvents
+pset=run.py;
+dumpFile=dumpFile.log;
+commonArgs="seed=$jobId $gridpack $eventsPerLumi nEvents=$nEvents";
+
+python $pset $commonArgs dumpFile=$dumpFile
+if [ -f $dumpFile]; then
+  cat $dumpFile;
+else
+  echo "File $dumpFile does not exist!";
+fi
+
+cmsRun -j FrameworkJobReport.xml $pset $commonArgs

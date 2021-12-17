@@ -5,10 +5,15 @@ echo "Date is: `date`"
 
 SEED=$1;
 NEVENTS=$2;
-OUTPUT_DIR=$3;
-GRIDPACK=$4;
+NEVENTS_PER_LUMIBLOCK=$3;
+OUTPUT_DIR=$4;
+GRIDPACK=$5;
 
-if [[ -z "$SEED" ]] || [[ -z "$NEVENTS" ]] || [[ -z "$OUTPUT_DIR" ]] || [[ -z "$GRIDPACK" ]]; then
+if [[ -z "$SEED" ]] || \
+   [[ -z "$NEVENTS" ]] || \
+   [[ -z "$NEVENTS_PER_LUMIBLOCK" ]] || \
+   [[ -z "$OUTPUT_DIR" ]] || \
+   [[ -z "$GRIDPACK" ]]; then
   echo "Not enought arguments";
   exit 1;
 fi
@@ -28,7 +33,7 @@ mkdir -pv $TMP_DIR
 cd $TMP_DIR
 
 OUTPUT=tree_$SEED.root
-run_job.sh $SEED $NEVENTS $OUTPUT $GRIDPACK
+run_job.sh $SEED $NEVENTS $NEVENTS_PER_LUMIBLOCK $OUTPUT $GRIDPACK
 cp -v $OUTPUT $OUTPUT_DIR
 
 sleep 60

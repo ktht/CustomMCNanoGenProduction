@@ -46,6 +46,13 @@ options.register(
   mytype  = VarParsing.varType.string,
   info    = "Gridpack",
 )
+options.register(
+  name    = 'dumpFile',
+  default = '',
+  mult    = VarParsing.multiplicity.singleton,
+  mytype  = VarParsing.varType.string,
+  info    = "Config dump",
+)
 options.parseArguments()
 
 process = cms.Process('NANOGEN',Run2_2018)
@@ -234,3 +241,7 @@ process.nanogenSequence.remove(process.particleLevelTables)
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete
 process = customiseEarlyDelete(process)
 # End adding early deletion
+
+if options.dumpFile:
+  with open(options.dumpFile, 'w') as dumpFile:
+    dumpFile.write(process.dumpPython())

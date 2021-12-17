@@ -1,11 +1,18 @@
 #!/bin/bash
 
+set -x
+
 SEED=$1;
 NEVENTS=$2;
-OUTPUT=$3;
-GRIDPACK=$4;
+NEVENTS_PER_LUMIBLOCK=$3;
+OUTPUT=$4;
+GRIDPACK=$5;
 
-if [[ -z "$SEED" ]] || [[ -z "$NEVENTS" ]] || [[ -z "$OUTPUT" ]] || [[ -z "$GRIDPACK" ]]; then
+if [[ -z "$SEED" ]] || \
+   [[ -z "$NEVENTS" ]] || \
+   [[ -z "$NEVENTS_PER_LUMIBLOCK" ]] || \
+   [[ -z "$OUTPUT" ]] || \
+   [[ -z "$GRIDPACK" ]]; then
   echo "Not enought arguments";
   exit 1;
 fi
@@ -14,7 +21,7 @@ CUSTOM_CMDS="process.RandomNumberGeneratorService.externalLHEProducer.initialSee
 CUSTOM_CMDS+="process.RandomNumberGeneratorService.generator.initialSeed=$SEED;";
 CUSTOM_CMDS+="process.source.firstRun=cms.untracked.uint32(1);";
 CUSTOM_CMDS+="process.source.firstLuminosityBlock=cms.untracked.uint32($SEED);";
-CUSTOM_CMDS+="process.source.numberEventsInLuminosityBlock=cms.untracked.uint32($NEVENTS);";
+CUSTOM_CMDS+="process.source.numberEventsInLuminosityBlock=cms.untracked.uint32($NEVENTS_PER_LUMIBLOCK);";
 CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
 CUSTOM_CMDS+="process.nanogenSequence.remove(process.rivetProducerHTXS);";
 CUSTOM_CMDS+="process.nanogenSequence.remove(process.particleLevelTables);";
