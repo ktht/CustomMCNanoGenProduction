@@ -16,6 +16,8 @@ CUSTOM_CMDS+="process.source.firstRun=cms.untracked.uint32(1);";
 CUSTOM_CMDS+="process.source.firstLuminosityBlock=cms.untracked.uint32($SEED);";
 CUSTOM_CMDS+="process.source.numberEventsInLuminosityBlock=cms.untracked.uint32($NEVENTS);";
 CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
+CUSTOM_CMDS+="process.nanogenSequence.remove(process.rivetProducerHTXS);";
+CUSTOM_CMDS+="process.nanogenSequence.remove(process.particleLevelTables);";
 
 CFG=run.py
 

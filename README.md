@@ -188,7 +188,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>6.948e+03</td>
     <td>1.290e+03</td>
     <td>0.19</td>
-    <td>?</td>
+    <td>0.145</td>
     <td>7.3e5</td>
     <td>1e6 (0.73x)</td>
     <td>4e6</td>

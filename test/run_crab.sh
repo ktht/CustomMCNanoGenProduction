@@ -18,9 +18,5 @@ fi
 
 ls -lh
 
-# for debugging purposes
-echo "================= Dumping PSet ===================="
-python -c "import run; print run.process.dumpPython()"
-
 # PSet.py should correspond to the tweaked PSet
 cmsRun -j FrameworkJobReport.xml run.py seed=$jobId $gridpack $eventsPerLumi nEvents=$nEvents
