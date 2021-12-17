@@ -47,7 +47,9 @@ export NEVENTS_PER_JOB=5000;
 DRYRUN="";
 CRAB_CFG=$(realpath $(dirname "${BASH_SOURCE[0]}"))/crab_cfg.py
 
-CRAB_USERNAME=$(crab checkusername | grep "^Username" | awk '{print $NF}')
+echo "Checking crab user name ...";
+CRAB_USERNAME=$(crab checkusername | grep "^Username" | awk '{print $NF}');
+echo "Crab user name is: $CRAB_USERNAME";
 PREFIX=gsiftp://ganymede.hep.kbfi.ee:2811/cms/store/user/${CRAB_USERNAME}/gridpacks;
 
 show_help() {
