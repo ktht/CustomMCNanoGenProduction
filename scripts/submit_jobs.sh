@@ -63,6 +63,10 @@ elif [ $EXCESS -lt 0 ]; then
   NOF_EVENTS_LAST=$(( $EXCESS + $NEVENTS_PER_SAMPLE ));
 fi
 
+if [ -z "$SBATCH_QUEUE" ]; then
+  SBATCH_QUEUE=main;
+fi
+
 for i in `seq 1 $NOF_JOBS`; do
 
   NOF_EVENTS=$NEVENTS_PER_SAMPLE;
@@ -70,6 +74,6 @@ for i in `seq 1 $NOF_JOBS`; do
     NOF_EVENTS=$NOF_EVENTS_LAST;
   fi
 
-  sbatch --partition=main --output=$LOG_DIR/out_$i.log \
+  sbatch --partition=$SBATCH_QUEUE --output=$LOG_DIR/out_$i.log \
     job_wrapper.sh $i $NOF_EVENTS $OUTPUT_DIR $GRIDPACK;
 done

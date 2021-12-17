@@ -2,7 +2,6 @@
 
 ## TODO
 
-- CRAB submissions for larger productions (> 1-2k jobs)
 - Parse logs to compute the cross sections
 
 ## Gridpack generation
@@ -53,24 +52,43 @@ git clone https://github.com/ktht/CustomMCNanoGenProduction.git Configuration/Cu
 scram b -j8
 ```
 
-Run the jobs (matching efficiency and number of jobs in the comments):
+Run the jobs locally:
 
 ```bash
-submit_jobs.sh wjets   7000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 
-submit_jobs.sh w1jets 20000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 24%, 4k
-submit_jobs.sh w2jets 15000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 20%, 3k
-submit_jobs.sh w3jets 10000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 8%, 2k
-submit_jobs.sh w4jets  6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 5.5%, 1.2k
+submit_jobs.sh wjets   7000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w1jets 20000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w2jets 15000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w3jets 10000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh w4jets  6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 
-submit_jobs.sh wjets_ht70to100    6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 1.2k
-submit_jobs.sh wjets_ht100to200   7500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 12.5%, 1.5k
-submit_jobs.sh wjets_ht200to400   3000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 12.5%, 600
-submit_jobs.sh wjets_ht400to600    450000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 8%, 90
-submit_jobs.sh wjets_ht600to800    100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 9.5%, 20
-submit_jobs.sh wjets_ht800to1200   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 7%, 20
-submit_jobs.sh wjets_ht1200to2500  100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # 6%, 20
-submit_jobs.sh wjets_ht2500toInf   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log # ?%, 20
+submit_jobs.sh wjets_ht70to100    6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht100to200   7500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht200to400   3000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht400to600    450000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht600to800    100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht800to1200   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht1200to2500  100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+submit_jobs.sh wjets_ht2500toInf   100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 ``````
+
+Or equivalently with CRAB:
+
+```bash
+./test/submit_crab.sh -s wjets  -n  7000000 -v v0
+./test/submit_crab.sh -s w1jets -n 20000000 -v v0
+./test/submit_crab.sh -s w2jets -n 15000000 -v v0
+./test/submit_crab.sh -s w3jets -n 10000000 -v v0
+./test/submit_crab.sh -s w4jets -n  6000000 -v v0
+
+./test/submit_crab.sh -s wjets_ht70to100    -n 6000000 -v v0
+./test/submit_crab.sh -s wjets_ht100to200   -n 7500000 -v v0
+./test/submit_crab.sh -s wjets_ht200to400   -n 3000000 -v v0
+./test/submit_crab.sh -s wjets_ht400to600   -n  450000 -v v0
+./test/submit_crab.sh -s wjets_ht600to800   -n  100000 -v v0
+./test/submit_crab.sh -s wjets_ht800to1200  -n  100000 -v v0
+./test/submit_crab.sh -s wjets_ht1200to2500 -n  100000 -v v0
+./test/submit_crab.sh -s wjets_ht2500toInf  -n  100000 -v v0
+```
 
 The number of requested events are estimated from FR2 pre-legacy samples, so the estimates can be off.
 For instance, the `w4jets` sample has efficiency of about  0.08 in FR2, while preliminary efficiency
@@ -102,6 +120,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <th>Cross section<br>(before matching)</th>
     <th>Cross section<br>(after matching)</th>
     <th>Matching<br>efficiency</th>
+    <th>Matching<br>efficiency<br>(new)</th>
     <th>Expected<br># events</th>
     <th>Previous<br># events</th>
     <th>Required<br># events</th>
@@ -114,6 +133,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>1.127e+05</td>
     <td>5.274e+04</td>
     <td>0.47</td>
+    <td>0.415</td>
     <td>3e6</td>
     <td>3e6 (1x)</td>
     <td>6.4e6</td>
@@ -124,6 +144,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>2.638e+04</td>
     <td>8.094e+03</td>
     <td>0.31</td>
+    <td>0.24</td>
     <td>4.6e6</td>
     <td>5e5 (9.2x)</td>
     <td>1.5e7</td>
@@ -134,6 +155,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>1.737e+04</td>
     <td>2.788e+03</td>
     <td>0.16</td>
+    <td>0.2</td>
     <td>1.6e6</td>
     <td>3e5 (5.3x)</td>
     <td>9.9e6</td>
@@ -143,6 +165,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>w3jets</td>
     <td>1.272e+04</td>
     <td>9.887e+02</td>
+    <td>0.08</td>
     <td>0.08</td>
     <td>5.6e5</td>
     <td>2e5 (2.8x)</td>
@@ -154,6 +177,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>6.783e+03</td>
     <td>5.435e+02</td>
     <td>0.08</td>
+    <td>0.055</td>
     <td>3.1e5</td>
     <td>1e5 (3.1x)</td>
     <td>3.9e6</td>
@@ -164,6 +188,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>6.948e+03</td>
     <td>1.290e+03</td>
     <td>0.19</td>
+    <td>?</td>
     <td>7.3e5</td>
     <td>1e6 (0.73x)</td>
     <td>4e6</td>
@@ -174,6 +199,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>9.224e+03</td>
     <td>1.393e+03</td>
     <td>0.15</td>
+    <td>0.125</td>
     <td>8e5</td>
     <td>1e6 (0.8x)</td>
     <td>5.2e6</td>
@@ -184,6 +210,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>3.179e+03</td>
     <td>4.097e+02</td>
     <td>0.13</td>
+    <td>0.125</td>
     <td>2.3e5</td>
     <td>5e5 (0.46x)</td>
     <td>1.8e6</td>
@@ -194,6 +221,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>5.043e+02</td>
     <td>5.781e+01</td>
     <td>0.11</td>
+    <td>0.08</td>
     <td>3.3e4</td>
     <td>2.5e5 (0.13x)</td>
     <td>2.9e5</td>
@@ -204,6 +232,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>1.142e+02</td>
     <td>1.294e+01</td>
     <td>0.11</td>
+    <td>0.095</td>
     <td>7.4e3</td>
     <td>1e5 (0.07x)</td>
     <td>6.5e4</td>
@@ -214,6 +243,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>5.070e+01</td>
     <td>5.454e+00</td>
     <td>0.11</td>
+    <td>0.07</td>
     <td>3.1e3</td>
     <td>1e5 (0.03x)</td>
     <td>2.9e4</td>
@@ -224,6 +254,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>1.033e+01</td>
     <td>1.085e+00</td>
     <td>0.11</td>
+    <td>0.06</td>
     <td>6.2e2</td>
     <td>1e5 (0.01x)</td>
     <td>5.9e3</td>
@@ -234,6 +265,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <td>6.858e-02</td>
     <td>8.062e-03</td>
     <td>0.12</td>
+    <td>0.095</td>
     <td>4.6e0</td>
     <td>1e5 (~0x)</td>
     <td>3.9e1</td>
@@ -241,6 +273,7 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
   </tr>
   <tr>
     <td><b>Total</b></td>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>
