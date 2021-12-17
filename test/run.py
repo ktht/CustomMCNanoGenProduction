@@ -100,7 +100,7 @@ process.NANOAODGENoutput = cms.OutputModule("NanoAODOutputModule",
         dataTier = cms.untracked.string('NANOAOD'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:tree_{}.root'.format(options.seed)),
+    fileName = cms.untracked.string('file:tree.root'),
     outputCommands = process.NANOAODGENEventContent.outputCommands
 )
 
