@@ -7,35 +7,26 @@ SAMPLE=$1;
 NEVENTS=$2;
 OUTPUT_BASEDIR=$3;
 LOG_BASEDIR=$4;
+NEVENTS_PER_SAMPLE=5000;
 
-if [ "$SAMPLE" == "wjets" ]; then
-  SAMPLE_NAME="WJetsToLNu_13TeV-madgraphMLM-pythia8";
-elif [ "$SAMPLE" == "w1jets" ]; then
-  SAMPLE_NAME="W1JetsToLNu_13TeV-madgraphMLM-pythia8";
-elif [ "$SAMPLE" == "w2jets" ]; then
-  SAMPLE_NAME="W2JetsToLNu_13TeV-madgraphMLM-pythia8";
-elif [ "$SAMPLE" == "w3jets" ]; then
-  SAMPLE_NAME="W3JetsToLNu_13TeV-madgraphMLM-pythia8";
-elif [ "$SAMPLE" == "w4jets" ]; then
-  SAMPLE_NAME="W4JetsToLNu_13TeV-madgraphMLM-pythia8";
-elif [ "$SAMPLE" == "wjets_ht70to100" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-70to100";
-elif [ "$SAMPLE" == "wjets_ht100to200" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-100to200";
-elif [ "$SAMPLE" == "wjets_ht200to400" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-200to400";
-elif [ "$SAMPLE" == "wjets_ht400to600" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-400to600";
-elif [ "$SAMPLE" == "wjets_ht600to800" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-600to800";
-elif [ "$SAMPLE" == "wjets_ht800to1200" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-800to1200";
-elif [ "$SAMPLE" == "wjets_ht1200to2500" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-1200to2500";
-elif [ "$SAMPLE" == "wjets_ht2500toInf" ]; then
-  SAMPLE_NAME="WJetsToLNu_HT-2500toInf";
-else
-  echo "Invalid option: $SAMPLE";
+declare -A SAMPLES;
+SAMPLES["wjets"]="WJetsToLNu_13TeV-madgraphMLM-pythia8";
+SAMPLES["w1jets"]="W1JetsToLNu_13TeV-madgraphMLM-pythia8";
+SAMPLES["w2jets"]="W2JetsToLNu_13TeV-madgraphMLM-pythia8";
+SAMPLES["w3jets"]="W3JetsToLNu_13TeV-madgraphMLM-pythia8";
+SAMPLES["w4jets"]="W4JetsToLNu_13TeV-madgraphMLM-pythia8";
+SAMPLES["wjets_ht70to100"]="WJetsToLNu_HT-70to100";
+SAMPLES["wjets_ht100to200"]="WJetsToLNu_HT-100to200";
+SAMPLES["wjets_ht200to400"]="WJetsToLNu_HT-200to400";
+SAMPLES["wjets_ht400to600"]="WJetsToLNu_HT-400to600";
+SAMPLES["wjets_ht600to800"]="WJetsToLNu_HT-600to800";
+SAMPLES["wjets_ht800to1200"]="WJetsToLNu_HT-800to1200";
+SAMPLES["wjets_ht1200to2500"]="WJetsToLNu_HT-1200to2500";
+SAMPLES["wjets_ht2500toInf"]="WJetsToLNu_HT-2500toInf";
+
+SAMPLE_NAME=${SAMPLES[${SAMPLE}]};
+if [ -z "$SAMPLE_NAME" ]; then
+  echo "Invalid sample name given, exiting";
   exit 1;
 fi
 
@@ -50,7 +41,6 @@ mkdir -pv $OUTPUT_DIR;
 LOG_DIR=$LOG_BASEDIR/$SAMPLE;
 mkdir -pv $LOG_DIR;
 
-NEVENTS_PER_SAMPLE=5000;
 NOF_JOBS=$(python -c "import math; print(int(math.ceil(float($NEVENTS) / $NEVENTS_PER_SAMPLE)))");
 echo "Generating $NOF_JOBS job(s)";
 
