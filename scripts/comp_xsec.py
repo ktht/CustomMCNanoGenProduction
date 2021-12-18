@@ -39,15 +39,6 @@ logging.basicConfig(
 if not os.path.isdir(args.input):
   raise RuntimeError("Not a directory: %s" % args.input)
 
-N_tried_pos = {}
-N_tried_neg = {}
-N_passed_pos = {}
-N_passed_neg = {}
-xsec = {}
-xsec_err = {}
-xsec_err_match = {}
-procs = []
-
 TARFILE_PATTERN = re.compile('cmsRun_(?P<idx>\d+).log.tar.gz')
 
 GENXSECANALYZER = 'GenXsecAnalyzer'
@@ -76,7 +67,8 @@ def extract_lines(fptr):
         lines.append(line.strip())
   return lines
 
-def parse_file(fn):
+procs = {}
+def parse_file(fn, file_idx):
   if not os.path.isfile(fn):
     raise RuntimeError("No such file: %s" % fn)
   logging.debug(f'Processing: {fn}')
@@ -105,21 +97,20 @@ def parse_file(fn):
     line_split = line.split()
     assert(len(line_split) == 19)
     proc_id = int(line_split[0])
-    if proc_id not in procs: procs.append(proc_id)
-    if proc_id not in N_tried_pos: N_tried_pos[proc_id] = []
-    if proc_id not in N_tried_neg: N_tried_neg[proc_id] = []
-    if proc_id not in N_passed_pos: N_passed_pos[proc_id] = []
-    if proc_id not in N_passed_neg: N_passed_neg[proc_id] = []
-    if proc_id not in xsec: xsec[proc_id] = []
-    if proc_id not in xsec_err: xsec_err[proc_id] = []
-    if proc_id not in xsec_err_match: xsec_err_match[proc_id] = []
-    xsec[proc_id].append(float(line_split[1]))
-    xsec_err[proc_id].append(float(line_split[3]))
-    N_passed_pos[proc_id].append(int(line_split[5]))
-    N_passed_neg[proc_id].append(int(line_split[6]))
-    N_tried_pos[proc_id].append(int(line_split[8]))
-    N_tried_neg[proc_id].append(int(line_split[9]))
-    xsec_err_match[proc_id].append(float(line_split[12]))
+    if proc_id not in procs:
+      procs[proc_id] = []
+    procs[proc_id].append(
+      {
+        'file_idx' : file_idx,
+        'xsec' : float(line_split[1]),
+        'xsec_err' : float(line_split[3]),
+        'N_passed_pos' : int(line_split[5]),
+        'N_passed_neg' : int(line_split[6]),
+        'N_tried_pos' : int(line_split[8]),
+        'N_tried_neg' : int(line_split[9]),
+        'xsec_err_match' : float(line_split[12]),
+      }
+    )
 
 fns = []
 for fn in os.listdir(args.input):
@@ -128,10 +119,30 @@ for fn in os.listdir(args.input):
 nfiles = len(fns)
 logging.debug(f'Found {nfiles} file(s)')
 
-for fn in fns:
-  parse_file(fn)
+for file_idx, fn in enumerate(fns):
+  parse_file(fn, file_idx)
 nprocs = len(procs)
-logging.debug(f'Found {nprocs} subprocesses')
+logging.debug(f'Found {nprocs} subprocess(es)')
+
+def populate_dict(key):
+  result = {}
+  for proc_id in procs:
+    available_file_idx = {
+      procs[proc_id][file_idx]['file_idx'] : file_idx for file_idx in range(len(procs[proc_id]))
+    }
+    result[proc_id] = {
+      file_idx : procs[proc_id][available_file_idx[file_idx]][key] if file_idx in available_file_idx else 0
+      for file_idx in range(nfiles)
+    }
+  return result
+
+N_tried_pos = populate_dict('N_tried_pos')
+N_tried_neg = populate_dict('N_tried_neg')
+N_passed_pos = populate_dict('N_passed_pos')
+N_passed_neg = populate_dict('N_passed_neg')
+xsec = populate_dict('xsec')
+xsec_err = populate_dict('xsec_err')
+xsec_err_match = populate_dict('xsec_err_match')
 
 N_tried = {
   proc_idx : [ N_tried_pos[proc_idx][file_idx] - N_tried_neg[proc_idx][file_idx] for file_idx in range(nfiles) ]
