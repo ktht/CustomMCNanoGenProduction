@@ -112,7 +112,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <th>Expected<br># events</th>
     <th>Previous<br># events</th>
     <th>Required<br># events</th>
-    <th>Deliever<br># events</th>
+    <th>Delievered<br># events</th>
   </tr>
 </thead>
 <tbody>
@@ -124,7 +124,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>3e6</td>
     <td>3e6 (1x)</td>
     <td>6.7e6</td>
-    <td></td>
+    <td>3.1e6</td>
   </tr>
   <tr>
     <td>w1jets</td>
@@ -134,7 +134,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>4.9e6</td>
     <td>5e5 (8.9x)</td>
     <td>1.6e7</td>
-    <td></td>
+    <td>5.9e6</td>
   </tr>
   <tr>
     <td>w2jets</td>
@@ -144,7 +144,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>1.6e6</td>
     <td>3e5 (5.3x)</td>
     <td>1e7</td>
-    <td></td>
+    <td>2.3e6</td>
   </tr>
   <tr>
     <td>w3jets</td>
@@ -154,7 +154,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>4.6e5</td>
     <td>2e5 (2.3x)</td>
     <td>6.1e6</td>
-    <td></td>
+    <td>7.5e5</td>
   </tr>
   <tr>
     <td>w4jets</td>
@@ -164,7 +164,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>2.2e5</td>
     <td>1e5 (2.2x)</td>
     <td>3.7e6</td>
-    <td></td>
+    <td>3.4e5</td>
   </tr>
   <tr>
     <td>wjets_ht70to100</td>
@@ -174,7 +174,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>7e5</td>
     <td>1e6 (0.7x)</td>
     <td>4.1e6</td>
-    <td></td>
+    <td>1e6</td>
   </tr>
   <tr>
     <td>wjets_ht100to200</td>
@@ -184,7 +184,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>6.9e5</td>
     <td>1e6 (0.69x)</td>
     <td>5.3e6</td>
-    <td></td>
+    <td>1e6</td>
   </tr>
   <tr>
     <td>wjets_ht200to400</td>
