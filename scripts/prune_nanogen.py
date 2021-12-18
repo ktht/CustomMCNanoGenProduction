@@ -72,8 +72,18 @@ for fn_in in fns_in:
   t_in.SetBranchStatus('GenJet_mass', 1)
 
   n = t_in.GetEntries()
+  n10th = int(n / 10)
+  n100th = int(n / 100)
   for i in range(n):
     t_in.GetEntry(i)
+    if n > 1e5:
+      if i % n100th == 0:
+        sys.stdout.write('\r  .. {}%'.format(int(i / n100th * 100)))
+        sys.stdout.flush()
+    elif n > 1e4:
+      if i % n10th == 0:
+        sys.stdout.write('\r  .. {}%'.format(int(i / n10th * 10)))
+        sys.stdout.flush()
 
     genw_out[0] = genw_in[0]
     lhe_ht_out[0] = lhe_ht_in[0]
@@ -104,3 +114,4 @@ for fn_in in fns_in:
 f_out.cd()
 t_out.Write()
 f_out.Close()
+sys.stdout.write('\r .. 100%\n')
