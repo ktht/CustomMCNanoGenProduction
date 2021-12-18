@@ -32,7 +32,7 @@ fi
 out_files="$output "
 for f in *$SFX; do
   out_file=$(basename ${f%%.*}).root;
-  ./haddnano.py $out_file $(cat 00.in.txt | tr '\n' ' ');
+  ./haddnano.py $out_file $(cat $f | tr '\n' ' ');
   out_files+="$out_file "
 done
 
