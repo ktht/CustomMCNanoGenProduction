@@ -7,6 +7,8 @@ import sys
 import os.path
 import array
 
+ROOT.gROOT.SetBatch(True)
+
 MAX_OBJS = 128
 
 fn_out = sys.argv[1]
@@ -37,6 +39,7 @@ t_out.Branch('GenJet_HT_vector', ht_vec, 'GenJet_HT_vector/F')
 t_out.Branch('GenJet_HT_scalar', ht_scalar, 'GenJet_HT_scalar/F')
 
 for fn_in in fns_in:
+  print('Pruning {}'.format(fn_in))
   f_in = ROOT.TFile.Open(fn_in, 'read')
   t_in = f_in.Get('Events')
 
