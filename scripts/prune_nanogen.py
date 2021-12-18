@@ -78,7 +78,7 @@ for fn_in in fns_in:
     t_in.GetEntry(i)
     if n > 1e5:
       if i % n100th == 0:
-        sys.stdout.write('\r  .. {}%'.format(int(i / n100th * 100)))
+        sys.stdout.write('\r  .. {}%'.format(int(i / n100th)))
         sys.stdout.flush()
     elif n > 1e4:
       if i % n10th == 0:
