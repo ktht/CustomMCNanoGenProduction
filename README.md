@@ -86,28 +86,21 @@ Or equivalently with CRAB:
 #./test/submit_crab.sh -s wjets_ht2500toInf  -n  100000 -v v0
 ```
 
-The number of requested events are estimated from FR2 pre-legacy samples, so the estimates can be off.
-For instance, the `w4jets` sample has efficiency of about  0.08 in FR2, while preliminary efficiency
-derived from the new gridpacks is around 0.055. Of course, this may be compensated by changes in
-the cross section. However, it's not possible to compute the process cross section until the samples
-have been produced with sufficient statistics.
+One job can generate up to 5000 events. This parameter is chosen such that the job can finish in
+roughly a day. Interactive testing revealed that it takes about 6 s/event to run the sample
+production (so about 8h for 5000 events) but it can double on a more modest hardware.
+
+## Cross sections and statistics
 
 In the following table:
 
 - matching efficiency is computed by dividing cross section after the matching with cross section before the matching
 - expected number of events is estimated by dividing the exclusive cross section to the inclusive cross section, times the expected number of events from the inclusive sample, times 10
 - required number of events is what we need to generate, and derived by dividing the expected number of events with the matching efficiency
-- number of jobs equals to the required number of events divided by the number of events processed by a single job.
 
 The expected number of events is an order of magnitude greater than what would be expected from
-the same phase space region in the inclusive sample. Considering that we need to account for up
-to 50% more event statistics in some of the samples, and that we also need considerable amount of
-statistics to estimate the sample cross section accurately, the required number of events shown
-below really set the lower bound on how many events we really need to generate.
-
-One job can generate up to 5000 events. This parameter is chosen such that the job can finish in
-roughly a day. Interactive testing revealed that it takes about 6 s/event to run the sample
-production (so about 8h for 5000 events) but it can double on a more modest hardware.
+the same phase space region in the inclusive sample. Considering that we needed to estimate
+the sample cross section accurately, a minimum of 100k events were requested for each sample.
 
 <table>
 <thead>
@@ -116,167 +109,152 @@ production (so about 8h for 5000 events) but it can double on a more modest hard
     <th>Cross section<br>(before matching)</th>
     <th>Cross section<br>(after matching)</th>
     <th>Matching<br>efficiency</th>
-    <th>Matching<br>efficiency<br>(new)</th>
     <th>Expected<br># events</th>
     <th>Previous<br># events</th>
     <th>Required<br># events</th>
-    <th># jobs</th>
+    <th>Deliever<br># events</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>wjets</td>
-    <td>1.127e+05</td>
-    <td>5.274e+04</td>
-    <td>0.47</td>
-    <td>0.415</td>
+    <td>1.206e+05</td>
+    <td>5.416e+04</td>
+    <td>0.45</td>
     <td>3e6</td>
     <td>3e6 (1x)</td>
-    <td>6.4e6</td>
-    <td>1283</td>
+    <td>6.7e6</td>
+    <td></td>
   </tr>
   <tr>
     <td>w1jets</td>
-    <td>2.638e+04</td>
-    <td>8.094e+03</td>
-    <td>0.31</td>
-    <td>0.24</td>
-    <td>4.6e6</td>
-    <td>5e5 (9.2x)</td>
-    <td>1.5e7</td>
-    <td>3002</td>
+    <td>3.038e+04</td>
+    <td>8.919e+03</td>
+    <td>0.3</td>
+    <td>4.9e6</td>
+    <td>5e5 (8.9x)</td>
+    <td>1.6e7</td>
+    <td></td>
   </tr>
   <tr>
     <td>w2jets</td>
-    <td>1.737e+04</td>
-    <td>2.788e+03</td>
-    <td>0.16</td>
-    <td>0.2</td>
+    <td>1.828e+04</td>
+    <td>2.829e+03</td>
+    <td>0.15</td>
     <td>1.6e6</td>
     <td>3e5 (5.3x)</td>
-    <td>9.9e6</td>
-    <td>1977</td>
+    <td>1e7</td>
+    <td></td>
   </tr>
   <tr>
     <td>w3jets</td>
-    <td>1.272e+04</td>
-    <td>9.887e+02</td>
-    <td>0.08</td>
-    <td>0.08</td>
-    <td>5.6e5</td>
-    <td>2e5 (2.8x)</td>
-    <td>7.2e6</td>
-    <td>1448</td>
+    <td>1.097e+04</td>
+    <td>8.255e+02</td>
+    <td>0.075</td>
+    <td>4.6e5</td>
+    <td>2e5 (2.3x)</td>
+    <td>6.1e6</td>
+    <td></td>
   </tr>
   <tr>
     <td>w4jets</td>
-    <td>6.783e+03</td>
-    <td>5.435e+02</td>
-    <td>0.08</td>
-    <td>0.055</td>
-    <td>3.1e5</td>
-    <td>1e5 (3.1x)</td>
-    <td>3.9e6</td>
-    <td>772</td>
+    <td>6.505e+03</td>
+    <td>3.901e+02</td>
+    <td>0.06</td>
+    <td>2.2e5</td>
+    <td>1e5 (2.2x)</td>
+    <td>3.7e6</td>
+    <td></td>
   </tr>
   <tr>
     <td>wjets_ht70to100</td>
-    <td>6.948e+03</td>
-    <td>1.290e+03</td>
-    <td>0.19</td>
-    <td>0.145</td>
-    <td>7.3e5</td>
-    <td>1e6 (0.73x)</td>
-    <td>4e6</td>
-    <td>791</td>
+    <td>7.494e+03</td>
+    <td>1.256e+03</td>
+    <td>0.17</td>
+    <td>7e5</td>
+    <td>1e6 (0.7x)</td>
+    <td>4.1e6</td>
+    <td></td>
   </tr>
   <tr>
     <td>wjets_ht100to200</td>
-    <td>9.224e+03</td>
-    <td>1.393e+03</td>
-    <td>0.15</td>
-    <td>0.125</td>
-    <td>8e5</td>
-    <td>1e6 (0.8x)</td>
-    <td>5.2e6</td>
-    <td>1050</td>
+    <td>9.344e+03</td>
+    <td>1.245e+03</td>
+    <td>0.13</td>
+    <td>6.9e5</td>
+    <td>1e6 (0.69x)</td>
+    <td>5.3e6</td>
+    <td></td>
   </tr>
   <tr>
     <td>wjets_ht200to400</td>
-    <td>3.179e+03</td>
-    <td>4.097e+02</td>
-    <td>0.13</td>
-    <td>0.125</td>
-    <td>2.3e5</td>
-    <td>5e5 (0.46x)</td>
-    <td>1.8e6</td>
-    <td>362</td>
+    <td>3.037e+03</td>
+    <td>3.340e+02</td>
+    <td>0.11</td>
+    <td>1.9e5</td>
+    <td>5e5 (0.38x)</td>
+    <td>1.7e6</td>
+    <td>3.3e5</td>
   </tr>
   <tr>
     <td>wjets_ht400to600</td>
-    <td>5.043e+02</td>
-    <td>5.781e+01</td>
-    <td>0.11</td>
-    <td>0.08</td>
-    <td>3.3e4</td>
-    <td>2.5e5 (0.13x)</td>
-    <td>2.9e5</td>
-    <td>58</td>
+    <td>4.579e+02</td>
+    <td>4.533e+01</td>
+    <td>0.10</td>
+    <td>2.5e4</td>
+    <td>2.5e5 (0.1x)</td>
+    <td>2.5e5</td>
+    <td>4.5e4</td>
   </tr>
   <tr>
     <td>wjets_ht600to800</td>
-    <td>1.142e+02</td>
-    <td>1.294e+01</td>
-    <td>0.11</td>
-    <td>0.095</td>
-    <td>7.4e3</td>
-    <td>1e5 (0.07x)</td>
-    <td>6.5e4</td>
-    <td>13</td>
+    <td>1.169e+02</td>
+    <td>1.079e+01</td>
+    <td>0.09</td>
+    <td>6e3</td>
+    <td>1e5 (0.06x)</td>
+    <td>6.7e4</td>
+    <td>9.2e3</td>
   </tr>
   <tr>
     <td>wjets_ht800to1200</td>
-    <td>5.070e+01</td>
-    <td>5.454e+00</td>
-    <td>0.11</td>
-    <td>0.07</td>
-    <td>3.1e3</td>
+    <td>5.910e+01</td>
+    <td>5.389e+00</td>
+    <td>0.09</td>
+    <td>3e3</td>
     <td>1e5 (0.03x)</td>
-    <td>2.9e4</td>
-    <td>6</td>
+    <td>3.3e4</td>
+    <td>9.1e3</td>
   </tr>
   <tr>
     <td>wjets_ht1200to2500</td>
-    <td>1.033e+01</td>
-    <td>1.085e+00</td>
-    <td>0.11</td>
-    <td>0.06</td>
-    <td>6.2e2</td>
+    <td>2.017e+01</td>
+    <td>1.804e+00</td>
+    <td>0.09</td>
+    <td>1e3</td>
     <td>1e5 (0.01x)</td>
-    <td>5.9e3</td>
-    <td>2</td>
+    <td>1.1e4</td>
+    <td>9.0e3</td>
   </tr>
   <tr>
     <td>wjets_ht2500toInf</td>
-    <td>6.858e-02</td>
-    <td>8.062e-03</td>
-    <td>0.12</td>
-    <td>0.095</td>
-    <td>4.6e0</td>
+    <td>2.866e-01</td>
+    <td>2.661e-02</td>
+    <td>0.09</td>
+    <td>1.5e1</td>
     <td>1e5 (~0x)</td>
-    <td>3.9e1</td>
-    <td>1</td>
+    <td>1.6e2</td>
+    <td>9.3e3</td>
   </tr>
   <tr>
-    <td><b>Total</b></td>
-    <td></td>
+    <td>Total</td>
     <td></td>
     <td></td>
     <td></td>
     <td><b>1.2e7</b></td>
     <td><b>7.3e5 (16x)</b></td>
     <td><b>5.4e7</b></td>
-    <td><b>10765</b></td>
+    <td></td>
   </tr>
 </tbody>
 </table>

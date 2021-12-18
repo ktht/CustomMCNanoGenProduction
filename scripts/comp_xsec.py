@@ -2,7 +2,7 @@
 
 # Examples:
 #
-# comp_xsec.py /hdfs/cms/store/.../0000/log
+# comp_xsec.py /hdfs/cms/store/.../000*/log
 # comp_xsec.py ~/NanoGEN/log/...
 #
 # The final cross section will be underlined
@@ -25,7 +25,7 @@ parser = argparse.ArgumentParser(
   formatter_class = lambda prog: SmartFormatter(prog, max_help_position = 40),
 )
 
-parser.add_argument('-i', '--input', dest = 'input', metavar = 'directory', required = True, type = str,
+parser.add_argument('-i', '--input', dest = 'input', metavar = 'directory', required = True, type = str, nargs = '+',
                     help = 'R|Directory containing log files (tarballed or otherwise)')
 parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', default = False,
                     help = 'R|Enable verbose printout')
@@ -36,8 +36,9 @@ logging.basicConfig(
   level  = logging.DEBUG if args.verbose else logging.INFO,
   format = '%(asctime)s - %(levelname)s: %(message)s'
 )
-if not os.path.isdir(args.input):
-  raise RuntimeError("Not a directory: %s" % args.input)
+for dirname in args.input:
+  if not os.path.isdir(dirname):
+    raise RuntimeError("Not a directory: %s" % dirname)
 
 TARFILE_PATTERN = re.compile('cmsRun_(?P<idx>\d+).log.tar.gz')
 
@@ -113,11 +114,16 @@ def parse_file(fn, file_idx):
     )
 
 fns = []
-for fn in os.listdir(args.input):
-  if fn.endswith(('.log', '.tar.gz')):
-    fns.append(os.path.join(args.input, fn))
+for dirname in args.input:
+  for fn in os.listdir(dirname):
+    if fn.endswith(('.log', '.tar.gz')):
+      fns.append(os.path.join(dirname, fn))
 nfiles = len(fns)
-logging.debug(f'Found {nfiles} file(s)')
+if nfiles > 0:
+  logging.debug(f'Found {nfiles} file(s)')
+else:
+  logging.error(f'Found {nfiles} file(s)')
+  sys.exit(1)
 
 for file_idx, fn in enumerate(fns):
   parse_file(fn, file_idx)
@@ -211,6 +217,7 @@ line += 'xsec after = '
 line_len = len(line)
 line_append = f'{xsec_match_final:.3e} +/- {xsec_err_match_final:.3e}'
 line += line_append
+line += f' => eff = {xsec_match_final / xsec_final * 100.:.3f}%'
 underline_len = len(line_append)
 
 print(line)
