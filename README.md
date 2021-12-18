@@ -51,14 +51,14 @@ scram b -j8
 Run the jobs locally:
 
 ```bash
-submit_jobs.sh wjets   7000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
-submit_jobs.sh w1jets 20000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
-submit_jobs.sh w2jets 15000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
-submit_jobs.sh w3jets 10000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
-submit_jobs.sh w4jets  6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh wjets   7000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh w1jets 20000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh w2jets 15000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh w3jets 10000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh w4jets  6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 
-submit_jobs.sh wjets_ht70to100    6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
-submit_jobs.sh wjets_ht100to200   7500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh wjets_ht70to100    6000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
+#submit_jobs.sh wjets_ht100to200   7500000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 submit_jobs.sh wjets_ht200to400   3000000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 submit_jobs.sh wjets_ht400to600    450000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
 submit_jobs.sh wjets_ht600to800    100000 /hdfs/local/$USER/NanoGEN/prod ~/NanoGEN/log
@@ -78,12 +78,12 @@ Or equivalently with CRAB:
 
 ./test/submit_crab.sh -s wjets_ht70to100    -n 6000000 -v v0
 ./test/submit_crab.sh -s wjets_ht100to200   -n 7500000 -v v0
-./test/submit_crab.sh -s wjets_ht200to400   -n 3000000 -v v0
-./test/submit_crab.sh -s wjets_ht400to600   -n  450000 -v v0
-./test/submit_crab.sh -s wjets_ht600to800   -n  100000 -v v0
-./test/submit_crab.sh -s wjets_ht800to1200  -n  100000 -v v0
-./test/submit_crab.sh -s wjets_ht1200to2500 -n  100000 -v v0
-./test/submit_crab.sh -s wjets_ht2500toInf  -n  100000 -v v0
+#./test/submit_crab.sh -s wjets_ht200to400   -n 3000000 -v v0
+#./test/submit_crab.sh -s wjets_ht400to600   -n  450000 -v v0
+#./test/submit_crab.sh -s wjets_ht600to800   -n  100000 -v v0
+#./test/submit_crab.sh -s wjets_ht800to1200  -n  100000 -v v0
+#./test/submit_crab.sh -s wjets_ht1200to2500 -n  100000 -v v0
+#./test/submit_crab.sh -s wjets_ht2500toInf  -n  100000 -v v0
 ```
 
 The number of requested events are estimated from FR2 pre-legacy samples, so the estimates can be off.
