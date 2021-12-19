@@ -234,8 +234,9 @@ process = customizeNanoGEN(process)
 # custom
 process.RandomNumberGeneratorService.externalLHEProducer.initialSeed = options.seed
 process.RandomNumberGeneratorService.generator.initialSeed = options.seed
-process.nanogenSequence.remove(process.rivetProducerHTXS)
-process.nanogenSequence.remove(process.particleLevelTables)
+
+from Configuration.CustomNanoGEN.customizeNanoGEN import customizeNanoGEN
+process = customizeNanoGEN(process)
 
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete

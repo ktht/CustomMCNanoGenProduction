@@ -6,7 +6,7 @@ NB! Do the following in clean environment, no CMSSW:
 
 ```bash
 cd $HOME
-git clone https://github.com/ktht/genproductions.git # using 2.6.5
+git clone -b NanoGEN_WJets https://github.com/ktht/genproductions.git # using 2.6.5
 cd genproductions/bin/MadGraph5_aMCatNLO
 ```
 
@@ -29,9 +29,9 @@ Produce the gridpacks:
 ./gridpack_generation.sh WJetsToLNu_HT-1200to2500 cards/production/2017/13TeV/WJets_HT_LO_MLM/WJetsToLNu_HT-1200to2500 slurm
 ./gridpack_generation.sh WJetsToLNu_HT-2500toInf  cards/production/2017/13TeV/WJets_HT_LO_MLM/WJetsToLNu_HT-2500toInf slurm
 
-mkdir -p /hdfs/local/$USER/gridpacks
-cp *.tar.xz /hdfs/local/$USER/gridpacks/.
-ls /hdfs/local/$USER/gridpacks/*.tar.xz | xargs -I {} gfal-copy file://{} gsiftp://$SERVER:$PORT/cms/store/user/$CRAB_USERNAME/gridpacks
+mkdir -p /hdfs/local/$USER/gridpacks/v0
+cp *.tar.xz /hdfs/local/$USER/gridpacks/v0/.
+ls /hdfs/local/$USER/gridpacks/v0/*.tar.xz | xargs -I {} gfal-copy file://{} gsiftp://$SERVER:$PORT/cms/store/user/$CRAB_USERNAME/gridpacks/v0
 ```
 
 ## NanoGEN production

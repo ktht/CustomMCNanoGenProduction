@@ -23,8 +23,8 @@ CUSTOM_CMDS+="process.source.firstRun=cms.untracked.uint32(1);";
 CUSTOM_CMDS+="process.source.firstLuminosityBlock=cms.untracked.uint32($SEED);";
 CUSTOM_CMDS+="process.source.numberEventsInLuminosityBlock=cms.untracked.uint32($NEVENTS_PER_LUMIBLOCK);";
 CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
-CUSTOM_CMDS+="process.nanogenSequence.remove(process.rivetProducerHTXS);";
-CUSTOM_CMDS+="process.nanogenSequence.remove(process.particleLevelTables);";
+CUSTOM_CMDS+="from Configuration.CustomNanoGEN.customizeNanoGEN import customizeNanoGEN;";
+CUSTOM_CMDS+="process = customizeNanoGEN(process);";
 
 CFG=run.py
 
@@ -35,4 +35,4 @@ cmsDriver.py Configuration/CustomNanoGEN/python/fragment.py       \
   --era Run2_2018 --customise_commands "$CUSTOM_CMDS";
 
 /usr/bin/time --verbose cmsRun $CFG
-rm -fv $CFG
+#rm -fv $CFG

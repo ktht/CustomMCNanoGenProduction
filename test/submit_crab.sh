@@ -89,7 +89,8 @@ if [ ! -f "$CRAB_CFG" ]; then
   echo "No such CRAB config file: $CRAB_CFG";
 fi
 
-export GRIDPACK=${PREFIX}/${DATASET}_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz
+#TODO make the version configurable
+export GRIDPACK=${PREFIX}/v0/${DATASET}_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz
 echo "Testing if the gridpack is accessible"
 LD_LIBRARY_PATH=${GLITE_LOCATION}/lib64:${GLITE_LOCATION}/lib gfal-ls $GRIDPACK
 GRIDPACK_EXISTS=$?
