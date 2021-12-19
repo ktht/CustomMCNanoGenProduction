@@ -35,4 +35,4 @@ cmsDriver.py Configuration/CustomNanoGEN/python/fragment.py       \
   --era Run2_2018 --customise_commands "$CUSTOM_CMDS";
 
 /usr/bin/time --verbose cmsRun $CFG
-#rm -fv $CFG
+rm -fv $CFG

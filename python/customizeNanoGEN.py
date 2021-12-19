@@ -1,5 +1,10 @@
+import FWCore.ParameterSet.Config as cms
 
 def customizeNanoGEN(process):
-  process.nanogenSequence.remove(process.rivetProducerHTXS)
-  process.nanogenSequence.remove(process.particleLevelTables)
+  process.nanogenSequence = cms.Sequence(
+    process.nanoMetadata+
+    process.genJetTable+
+    process.genWeightsTable+
+    process.lheInfoTable
+  )
   return process
