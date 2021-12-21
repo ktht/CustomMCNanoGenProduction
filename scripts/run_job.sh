@@ -17,10 +17,13 @@ if [[ -z "$SEED" ]] || \
   exit 1;
 fi
 
+FIRST_EVENT=$(( $NEVENTS_PER_LUMIBLOCK * ($SEED - 1) + 1 ));
+
 CUSTOM_CMDS="process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=$SEED;";
 CUSTOM_CMDS+="process.RandomNumberGeneratorService.generator.initialSeed=$SEED;";
 CUSTOM_CMDS+="process.source.firstRun=cms.untracked.uint32(1);";
 CUSTOM_CMDS+="process.source.firstLuminosityBlock=cms.untracked.uint32($SEED);";
+CUSTOM_CMDS+="process.source.firstEvent=cms.untracked.uint32($FIRST_EVENT);";
 CUSTOM_CMDS+="process.source.numberEventsInLuminosityBlock=cms.untracked.uint32($NEVENTS_PER_LUMIBLOCK);";
 CUSTOM_CMDS+="process.externalLHEProducer.args=cms.vstring('$GRIDPACK');";
 CUSTOM_CMDS+="from Configuration.CustomNanoGEN.customizeNanoGEN import customizeNanoGEN;";

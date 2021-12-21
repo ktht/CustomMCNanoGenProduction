@@ -82,6 +82,7 @@ process.source = cms.Source("EmptySource",
     firstRun = cms.untracked.uint32(1),
     firstLuminosityBlock = cms.untracked.uint32(options.seed),
     numberEventsInLuminosityBlock = cms.untracked.uint32(options.eventsPerLumi), # custom
+    firstEvent = cms.untracked.uint32(options.eventsPerLumi * (options.seed - 1) + 1), # custom
 )
 
 process.options = cms.untracked.PSet(
