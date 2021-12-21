@@ -1,5 +1,9 @@
 # Producing W+jets NanoGEN samples
 
+## TODO
+
+- Assign every event a unique number
+
 ## Gridpack generation
 
 NB! Do the following in clean environment, no CMSSW:

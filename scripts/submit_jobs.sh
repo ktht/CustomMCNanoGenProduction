@@ -30,8 +30,12 @@ if [ -z "$SAMPLE_NAME" ]; then
   exit 1;
 fi
 
-#TODO make the version configurable
-GRIDPACK=/hdfs/local/$USER/gridpacks/v0/${SAMPLE_NAME}_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz
+if [[ "$SAMPLE_NAME" =~ .*HT.* ]]; then
+  GRIDPACK_VERSION=v1;
+else
+  GRIDPACK_VERSION=v0;
+fi;
+GRIDPACK=/hdfs/local/$USER/gridpacks/${GRIDPACK_VERSION}/${SAMPLE_NAME}_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz
 if [ ! -f "$GRIDPACK" ]; then
   echo "Gridpack missing: $GRIDPACK";
   exit 1;
