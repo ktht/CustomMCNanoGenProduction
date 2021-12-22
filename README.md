@@ -169,8 +169,8 @@ the sample cross section accurately, a minimum of 100k events were requested for
   </tr>
   <tr>
     <td>wjets_ht70to100</td>
-    <td>7.494e+03</td>
-    <td>1.256e+03</td>
+    <td>7.495e+03</td>
+    <td>1.255e+03</td>
     <td>0.17</td>
     <td>7e5</td>
     <td>1e6 (0.7x)</td>
@@ -180,7 +180,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
   <tr>
     <td>wjets_ht100to200</td>
     <td>9.344e+03</td>
-    <td>1.245e+03</td>
+    <td>1.243e+03</td>
     <td>0.13</td>
     <td>6.9e5</td>
     <td>1e6 (0.69x)</td>
@@ -190,7 +190,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
   <tr>
     <td>wjets_ht200to400</td>
     <td>3.037e+03</td>
-    <td>3.340e+02</td>
+    <td>3.339e+02</td>
     <td>0.11</td>
     <td>1.9e5</td>
     <td>5e5 (0.38x)</td>
@@ -199,8 +199,8 @@ the sample cross section accurately, a minimum of 100k events were requested for
   </tr>
   <tr>
     <td>wjets_ht400to600</td>
-    <td>4.579e+02</td>
-    <td>4.533e+01</td>
+    <td>4.578e+02</td>
+    <td>4.516e+01</td>
     <td>0.10</td>
     <td>2.5e4</td>
     <td>2.5e5 (0.1x)</td>
@@ -210,8 +210,8 @@ the sample cross section accurately, a minimum of 100k events were requested for
   <tr>
     <td>wjets_ht600to800</td>
     <td>1.169e+02</td>
-    <td>1.079e+01</td>
-    <td>0.09</td>
+    <td>1.112e+01</td>
+    <td>0.10</td>
     <td>6e3</td>
     <td>1e5 (0.06x)</td>
     <td>6.7e4</td>
@@ -219,8 +219,8 @@ the sample cross section accurately, a minimum of 100k events were requested for
   </tr>
   <tr>
     <td>wjets_ht800to1200</td>
-    <td>5.910e+01</td>
-    <td>5.389e+00</td>
+    <td>6.017e+01</td>
+    <td>5.527e+00</td>
     <td>0.09</td>
     <td>3e3</td>
     <td>1e5 (0.03x)</td>
@@ -229,8 +229,8 @@ the sample cross section accurately, a minimum of 100k events were requested for
   </tr>
   <tr>
     <td>wjets_ht1200to2500</td>
-    <td>2.017e+01</td>
-    <td>1.804e+00</td>
+    <td>2.062e+01</td>
+    <td>1.850e+00</td>
     <td>0.09</td>
     <td>1e3</td>
     <td>1e5 (0.01x)</td>
@@ -239,9 +239,9 @@ the sample cross section accurately, a minimum of 100k events were requested for
   </tr>
   <tr>
     <td>wjets_ht2500toInf</td>
-    <td>2.866e-01</td>
-    <td>2.661e-02</td>
-    <td>0.09</td>
+    <td>4.678e-01</td>
+    <td>4.594e-02</td>
+    <td>0.10</td>
     <td>1.5e1</td>
     <td>1e5 (~0x)</td>
     <td>1.6e2</td>

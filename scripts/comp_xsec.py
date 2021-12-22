@@ -2,8 +2,8 @@
 
 # Examples:
 #
-# comp_xsec.py /hdfs/cms/store/.../000*/log
-# comp_xsec.py ~/NanoGEN/log/...
+# comp_xsec.py -i /hdfs/cms/store/.../000*/log
+# comp_xsec.py -i ~/NanoGEN/log/...
 #
 # The final cross section will be underlined
 
