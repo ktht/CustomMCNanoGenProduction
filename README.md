@@ -242,7 +242,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>4.678e-01</td>
     <td>4.594e-02</td>
     <td>0.10</td>
-    <td>1.5e1</td>
+    <td>2.5e1</td>
     <td>1e5 (~0x)</td>
     <td>1.6e2</td>
     <td>9.3e3</td>
