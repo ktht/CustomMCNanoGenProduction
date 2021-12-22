@@ -6,7 +6,8 @@ NB! Do the following in clean environment, no CMSSW:
 
 ```bash
 cd $HOME
-git clone -b NanoGEN_WJets https://github.com/ktht/genproductions.git # using 2.6.5
+#git clone -b NanoGEN_WJets https://github.com/ktht/genproductions.git # using 2.6.5
+git clone -b NanoGEN_WJets_HT_avgNorm https://github.com/ktht/genproductions.git # using 2.6.5
 cd genproductions/bin/MadGraph5_aMCatNLO
 ```
 
@@ -174,7 +175,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>7e5</td>
     <td>1e6 (0.7x)</td>
     <td>4.1e6</td>
-    <td>1e6</td>
+    <td>9.5e5</td>
   </tr>
   <tr>
     <td>wjets_ht100to200</td>
@@ -184,7 +185,7 @@ the sample cross section accurately, a minimum of 100k events were requested for
     <td>6.9e5</td>
     <td>1e6 (0.69x)</td>
     <td>5.3e6</td>
-    <td>1e6</td>
+    <td>8.9e5</td>
   </tr>
   <tr>
     <td>wjets_ht200to400</td>
