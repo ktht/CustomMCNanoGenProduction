@@ -21,6 +21,7 @@ fi
 if [ -d $cmssw_str ]; then
   cd $cmssw_str/src;
   eval `scram runtime -sh`; # cmsenv
+  scram b;
   cd -;
 else
   echo "No directory named $cmssw_str in cwd:"
