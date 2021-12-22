@@ -22,6 +22,7 @@ NEVENTS         = get_env_var('NEVENTS', test_type = test_positive_int)
 DATASET         = get_env_var('DATASET')
 VERSION         = get_env_var('VERSION')
 GRIDPACK        = get_env_var('GRIDPACK')
+CMSSW_VERSION   = get_env_var('CMSSW_VERSION')
 
 TODAY         = datetime.date.today().strftime("%Y%b%d")
 THIS_FILE     = os.path.realpath(__file__)
@@ -52,6 +53,7 @@ config.JobType.scriptArgs              = [
   'gridpack={}'.format(GRIDPACK),
   'eventsPerLumi={}'.format(NEVENTS_PER_JOB),
   'maxEvents={}'.format(NEVENTS),
+  'cmssw={}'.format(CMSSW_VERSION),
 ]
 config.JobType.allowUndistributedCMSSW = True
 config.JobType.numCores                = 1
