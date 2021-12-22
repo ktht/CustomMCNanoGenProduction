@@ -59,6 +59,7 @@ config.JobType.allowUndistributedCMSSW = True
 config.JobType.numCores                = 1
 config.JobType.eventsPerLumi           = int(NEVENTS_PER_JOB)
 config.JobType.inputFiles              = [ SCRIPTEXE_LOC, PSET_LOC ]
+config.JobType.sendPythonFolder        = True
 
 config.Site.storageSite          = 'T2_EE_Estonia'
 config.Data.outputPrimaryDataset = DATASET
