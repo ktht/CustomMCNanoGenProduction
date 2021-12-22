@@ -103,12 +103,17 @@ if [ "$GRIDPACK_EXISTS" -gt 0 ]; then
   exit 1;
 fi
 
+NOF_JOBS=$(( $NEVENTS / $NEVENTS_PER_JOB ));
+if [ $(( $NOF_JOBS * $NEVENTS_PER_JOB )) -lt  $NOF_JOBS ]; then
+  $NOF_JOBS+=1;
+fi
 echo "Submitting jobs with the following parameters:"
-echo "Dataset: $DATASET"
-echo "Number of events: $NEVENTS";
+echo "Dataset:                  $DATASET"
+echo "Number of events:         $NEVENTS";
 echo "Number of events per job: $NEVENTS_PER_JOB";
-echo -ne "Dryrun: ";
-if [ -z "$DRYRUN" ]; then echo "No"; else echo "Yes"; fi
+echo "Number of jobs:           $NOF_JOBS"
+echo -ne "Dryrun:                   ";
+if [ -z "$DRYRUN" ]; then echo "no"; else echo "yes"; fi
 
 read -p "Submitting jobs? [y/N]" -n 1 -r
 echo
