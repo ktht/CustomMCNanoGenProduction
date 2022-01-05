@@ -88,7 +88,6 @@ for fn_in in fns_in:
     genw_out[0] = genw_in[0]
     lhe_ht_out[0] = lhe_ht_in[0]
     lhe_njet_out[0] = lhe_njet_in[0]
-    njet_out[0] = njet_in[0]
 
     lead_pt[0] = -1.
     sublead_pt[0] = -1.
@@ -96,6 +95,7 @@ for fn_in in fns_in:
     ht_scalar[0] = -1.
 
     jet_idxs = [ jet_idx for jet_idx in range(njet_in[0]) if jet_pt[jet_idx] > 25. and abs(jet_eta[jet_idx]) < 5. ]
+    njet_out[0] = len(jet_idxs)
     if jet_idxs:
       lead_pt[0] = jet_pt[jet_idxs[0]]
       if len(jet_idxs) > 1:
