@@ -7,4 +7,5 @@ def customizeNanoGEN(process):
     process.genWeightsTable+
     process.lheInfoTable
   )
+  process.genJetTable.src = "ak4GenJetsNoNu"
   return process
