@@ -266,9 +266,10 @@ Done in two steps:
 
 ```bash
 # 1) hadd the results, eg
-for d in /hdfs/local/$USER/NanoGEN/prod/*; do hadd_results.sh $(basename $d)_skimmed.root $d; done
-# the second argument can list multiple directories if needed (useful when hadding results from CRAB)
+for d in /hdfs/local/$USER/NanoGEN/prod/*; do hadd_results.sh $(basename $d)_hadded.root $d; done
+# the second argument to hadd_results.sh can list multiple directories if needed
+# (useful when hadding results from CRAB)
 
-# 2) skim the Ntuples
-for f in *_skimmed.root; do prune_nanogen.py "${f%_skimmed.root}_pruned.root" $f; done
+# 2) prune the Ntuples
+for f in *_hadded.root; do prune_nanogen.py "${f%_hadded.root}_pruned.root" $f; done
 ```
