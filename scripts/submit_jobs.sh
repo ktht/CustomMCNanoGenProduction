@@ -52,7 +52,7 @@ LOG_DIR=$LOG_BASEDIR/$SAMPLE;
 mkdir -pv $LOG_DIR;
 
 NOF_JOBS=$(python -c "import math; print(int(math.ceil(float($NEVENTS) / $NEVENTS_PER_SAMPLE)))");
-echo "Generating $NOF_JOBS job(s)";
+echo "Generating $NOF_JOBS job(s), of which skipping $(( $SKIP_TO - 1 )) job(s)";
 
 NOF_EVENTS_LAST=$NEVENTS_PER_SAMPLE;
 EXCESS=$(($NEVENTS - $NOF_JOBS * $NEVENTS_PER_SAMPLE));
