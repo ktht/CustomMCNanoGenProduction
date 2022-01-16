@@ -7,7 +7,12 @@ SAMPLE=$1;
 NEVENTS=$2;
 OUTPUT_BASEDIR=$3;
 LOG_BASEDIR=$4;
+SKIP_TO=$5;
 NEVENTS_PER_SAMPLE=5000;
+
+if [ -z "${SKIP_TO}" ]; then
+  SKIP_TO=1;
+fi
 
 declare -A SAMPLES;
 SAMPLES["wjets"]="WJetsToLNu_13TeV-madgraphMLM-pythia8";
@@ -62,7 +67,7 @@ if [ -z "$SBATCH_QUEUE" ]; then
   SBATCH_QUEUE=main;
 fi
 
-for i in `seq 1 $NOF_JOBS`; do
+for i in `seq $SKIP_TO $NOF_JOBS`; do
 
   NOF_EVENTS=$NEVENTS_PER_SAMPLE;
   if [ "$i" == "$NOF_JOBS" ]; then
